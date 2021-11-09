@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Reto4.Reto4;
+package Reto5.Reto5;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,35 +25,38 @@ import org.springframework.web.bind.annotation.RestController;
  * @author karen
  */
 @RestController
-@RequestMapping("/api/Game")
+@RequestMapping("/api/Client")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-public class ControladorGame {
+
+public class ControladorCliente {
     @Autowired
-    private ServiciosGame servicio;
+    private ServiciosCliente servicio;
+  
     @GetMapping("/all")
-    public List<Game> getGames(){
+    public List<Cliente> getClients(){
         return servicio.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Game> getGame(@PathVariable("id") int gameId) {
-        return servicio.getGame(gameId);
+    public Optional<Cliente> getClient(@PathVariable("id") int clientId) {
+        return servicio.getClient(clientId);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Game save(@RequestBody Game game) {
-        return servicio.save(game);
+    public Cliente save(@RequestBody Cliente client) {
+        return servicio.save(client);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Game update(@RequestBody Game game) {
-        return servicio.update(game);
+    public Cliente update(@RequestBody Cliente client) {
+        return servicio.update(client);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int gameId) {
-        return servicio.deleteGame(gameId);
+    public boolean delete(@PathVariable("id") int clientId) {
+        return servicio.deleteClient(clientId);
     }
+
 }

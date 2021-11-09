@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Reto4.Reto4;
+package Reto5.Reto5;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,48 +25,36 @@ import org.springframework.web.bind.annotation.RestController;
  * @author karen
  */
 @RestController
-@RequestMapping("/api/Reservation")
+@RequestMapping("/api/Message")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-
-public class ControladorReservaciones {
-    @Autowired
-    private ServiciosReservaciones servicio;
+public class ControladorMensaje {
+     @Autowired
+    private ServiciosMensaje servico;
     @GetMapping("/all")
-    public List<Reservaciones> getReservations(){
-        return servicio.getAll();
+    public List<Mensaje> getMessages(){
+        return servico.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Reservaciones> getReservation(@PathVariable("id") int reservationId) {
-        return servicio.getReservation(reservationId);
+    public Optional<Mensaje> getMessage(@PathVariable("id") int messageId) {
+        return servico.getMessage(messageId);
     }
+
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservaciones save(@RequestBody Reservaciones reservation) {
-        return servicio.save(reservation);
+    public Mensaje save(@RequestBody Mensaje message) {
+        return servico.save(message);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservaciones update(@RequestBody Reservaciones reservation) {
-        return servicio.update(reservation);
-    }
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int reservationId) {
-        return servicio.deleteReservation(reservationId);
-    }
-    
-    @GetMapping("/report-status")
-        public StatusReservas getReservas(){
-            return servicio.reporteStatusServicio();
-        }
-    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
-    public List<Reservaciones> getReservasTiempo (@PathVariable("dateOne")String dateOne,@PathVariable("dateTwo")String dateTwo ){
-            return servicio.reporteTiempoServicio(dateOne, dateTwo);
+    public Mensaje update(@RequestBody Mensaje message) {
+        return servico.update(message);
     }
 
-    @GetMapping("/report-clients")
-    public List<ContadorClientes> getClientes(){
-        return servicio.reporteClientesServicio();
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int messageId) {
+        return servico.deleteMessage(messageId);
     }
+
 }
