@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Retos.Reto5;
+package Reto4.Reto4;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +31,7 @@ public class ServiciosCategoria {
             return metodosCrud.save(categoria);
         } else {
             Optional<Categoria> categoria1 = metodosCrud.getCategoria(categoria.getId());
-            if (categoria1.isPresent()) {
+            if (categoria1.isEmpty()) {
                 return metodosCrud.save(categoria);
             } else {
                 return categoria;
@@ -42,7 +42,7 @@ public class ServiciosCategoria {
     public Categoria update(Categoria categoria){
         if(categoria.getId()!=null){
             Optional<Categoria>g=metodosCrud.getCategoria(categoria.getId());
-            if(!g.isPresent()){
+            if(!g.isEmpty()){
                 if(categoria.getDescription()!=null){
                     g.get().setDescription(categoria.getDescription());
                 }

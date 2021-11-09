@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Retos.Reto5;
+package Reto4.Reto4;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,21 +14,20 @@ import org.springframework.stereotype.Repository;
  * @author karen
  */
 @Repository
-public class RepositorioCategoria {
-    
+public class RepositorioMensaje {
     @Autowired
-    private InterfaceCategoria crud;
-    public List<Categoria> getAll(){
-        return (List<Categoria>) crud.findAll();
+    private InterfaceMensaje crud3;
+    public List<Mensaje> getAll(){
+        return (List<Mensaje>) crud3.findAll();
     }
-    public Optional<Categoria> getCategoria(int id){
-        return crud.findById(id);
+    public Optional<Mensaje> getMessage(int id){
+        return crud3.findById(id);
     }
 	
-    public Categoria save(Categoria Categoria){
-        return crud.save(Categoria);
+    public Mensaje save(Mensaje message){
+        return crud3.save(message);
     }
-    public void delete(Categoria Categoria){
-       crud.delete(Categoria);
+    public void delete(Mensaje message){
+        crud3.delete(message);
     }
 }

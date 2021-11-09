@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Retos.Reto5;
+package Reto4.Reto4;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,36 +25,35 @@ import org.springframework.web.bind.annotation.RestController;
  * @author karen
  */
 @RestController
-@RequestMapping("/api/Message")
+@RequestMapping("/api/Game")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-public class ControladorMensaje {
-     @Autowired
-    private ServiciosMensaje servico;
+public class ControladorGame {
+    @Autowired
+    private ServiciosGame servicio;
     @GetMapping("/all")
-    public List<Mensaje> getMessages(){
-        return servico.getAll();
+    public List<Game> getGames(){
+        return servicio.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Mensaje> getMessage(@PathVariable("id") int messageId) {
-        return servico.getMessage(messageId);
+    public Optional<Game> getGame(@PathVariable("id") int gameId) {
+        return servicio.getGame(gameId);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mensaje save(@RequestBody Mensaje message) {
-        return servico.save(message);
+    public Game save(@RequestBody Game game) {
+        return servicio.save(game);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mensaje update(@RequestBody Mensaje message) {
-        return servico.update(message);
+    public Game update(@RequestBody Game game) {
+        return servicio.update(game);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int messageId) {
-        return servico.deleteMessage(messageId);
+    public boolean delete(@PathVariable("id") int gameId) {
+        return servicio.deleteGame(gameId);
     }
-
 }

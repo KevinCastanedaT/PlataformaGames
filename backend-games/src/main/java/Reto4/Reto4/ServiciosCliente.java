@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Retos.Reto5;
+package Reto4.Reto4;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +28,7 @@ public class ServiciosCliente {
             return metodosCrud.save(client);
         }else{
             Optional<Cliente> e=metodosCrud.getCliente(client.getIdClient());
-            if(e.isPresent()){
+            if(e.isEmpty()){
                 return metodosCrud.save(client);
             }else{
                 return client;
@@ -38,7 +38,7 @@ public class ServiciosCliente {
     public Cliente update (Cliente client){
         if(client.getIdClient()!=null){
             Optional<Cliente> e=metodosCrud.getCliente(client.getIdClient());
-            if(!e.isPresent()){
+            if(!e.isEmpty()){
                 if(client.getName()!=null){
                     e.get().setName(client.getName());
                 }

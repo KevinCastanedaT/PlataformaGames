@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Retos.Reto5;
+package Reto4.Reto4;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +32,7 @@ public class ServiciosGame {
             return metodosCrud.save(game);
         }else{
             Optional<Game> e=metodosCrud.getGame(game.getId());
-            if(e.isPresent()){
+            if(e.isEmpty()){
                 return metodosCrud.save(game);
             }else{
                 return game;
@@ -43,7 +43,7 @@ public class ServiciosGame {
     public Game update(Game game){
         if(game.getId()!=null){
             Optional<Game> e=metodosCrud.getGame(game.getId());
-            if(!e.isPresent()){
+            if(!e.isEmpty()){
                 if(game.getName()!=null){
                     e.get().setName(game.getName());
                 }

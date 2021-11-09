@@ -2,8 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Retos.Reto5;
+package Reto4.Reto4;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +35,7 @@ public class ServiciosReservaciones {
             return metodosCrud.save(reservation);
         }else{
             Optional<Reservaciones> e= metodosCrud.getReservation(reservation.getIdReservation());
-            if(e.isPresent()){
+            if(e.isEmpty()){
                 return metodosCrud.save(reservation);
             }else{
                 return reservation;
@@ -42,7 +46,7 @@ public class ServiciosReservaciones {
     public Reservaciones update(Reservaciones reservation){
         if(reservation.getIdReservation()!=null){
             Optional<Reservaciones> e= metodosCrud.getReservation(reservation.getIdReservation());
-            if(!e.isPresent()){
+            if(!e.isEmpty()){
 
                 if(reservation.getStartDate()!=null){
                     e.get().setStartDate(reservation.getStartDate());
@@ -71,4 +75,30 @@ public class ServiciosReservaciones {
         return aBoolean;
     }
     
+    public StatusReservas reporteStatusServicio(){
+        List<Reservaciones>completed= metodosCrud.ReservacionStatusRepositorio("completed");
+        List<Reservaciones>cancelled= metodosCrud.ReservacionStatusRepositorio("cancelled");
+        
+        return new StatusReservas(completed.size(),cancelled.size());
+    }
+    public List<Reservaciones> reporteTiempoServicio(String datoA, String datoB){
+        SimpleDateFormat parser = new SimpleDateFormat ("yyyy-MM-dd");
+        
+        Date datoUno = new Date();
+        Date datoDos = new Date();
+        
+        try{
+            datoUno = parser.parse(datoA);
+            datoDos = parser.parse(datoB);
+        }catch(ParseException evt){
+            evt.printStackTrace();
+        }if(datoUno.before(datoDos)){
+            return metodosCrud.ReservacionTiempoRepositorio(datoUno,datoDos);
+        }else{
+            return new ArrayList<>();
+        }
+    }
+    public List<ContadorClientes> reporteClientesServicio(){
+        return metodosCrud.getClientesRepositorio();
+    }
 }

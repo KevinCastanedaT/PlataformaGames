@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Retos.Reto5;
+package Reto4.Reto4;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +31,7 @@ public class ServiciosMensaje {
             return metodosCrud.save(message);
         }else{
             Optional<Mensaje> e= metodosCrud.getMessage(message.getIdMessage());
-            if(e.isPresent()){
+            if(e.isEmpty()){
                 return metodosCrud.save(message);
             }else{
                 return message;
@@ -42,7 +42,7 @@ public class ServiciosMensaje {
     public Mensaje update(Mensaje message){
         if(message.getIdMessage()!=null){
             Optional<Mensaje> e= metodosCrud.getMessage(message.getIdMessage());
-            if(!e.isPresent()){
+            if(!e.isEmpty()){
                 if(message.getMessageText()!=null){
                     e.get().setMessageText(message.getMessageText());
                 }
