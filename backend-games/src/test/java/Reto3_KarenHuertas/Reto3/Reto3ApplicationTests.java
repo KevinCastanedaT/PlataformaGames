@@ -1,10 +1,10 @@
-package com.games.backend;
+package Reto3_KarenHuertas.Reto3;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BackendApplicationTests {
+class Reto3ApplicationTests {
 
 	@Test
 	void contextLoads() {
